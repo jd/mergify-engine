@@ -2,13 +2,13 @@
 FAQ
 ===
 
-Where is the mergify policy file located ?
-------------------------------------------
+Where is the mergify policy file located?
+-----------------------------------------
 
 In the root directory of the repository with the name `.mergify.yaml`.
 
-What the default policy configuration ?
----------------------------------------
+What is the default policy configuration?
+-----------------------------------------
 
 .. code-block:: yaml
 
