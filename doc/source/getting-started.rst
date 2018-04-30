@@ -38,6 +38,8 @@ A more realistic example of the `.mergify.yml` file would look like :
 The key `default` stores the default merging rules to use on all branches. The `required_status_checks` lists all checks that must pass before merging a pull request.
 The `required_pull_request_reviews` defines how many reviewer of the repository should approve the pull request before it gets merged.
 
+You can read the :doc:`full list of configuration option <configuration>`.
+
 You can define a per branch rule using the `branches` settings. To match multiple branches at once, you can use a regular expression:
 
 .. code-block:: yaml
