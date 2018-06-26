@@ -229,6 +229,9 @@ class MergifyEngine(object):
         LOG.info("%s selected", p.pretty())
 
         if p.mergify_engine_weight >= 11:
+            p.mergify_engine_github_post_check_status(
+                self._redis, self._installation_id, "success",
+                "Merging")
             # FIXME(sileht): If two PR are ready at the same times
             # this can fail, that's not a big deal, but we should ignore
             # the error here. And maybe try the next PR.
