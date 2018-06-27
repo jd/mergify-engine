@@ -135,7 +135,7 @@ def compute_weight_and_status(pull, **extra):
         status_desc = "Waiting for CI success"
     elif pull.mergeable_state == "behind":
         # Not up2date, but ready to merge, is branch updatable
-        if not pull.maintainer_can_modify:
+        if not pull.base_is_modifiable:
             weight = -1
             status_desc = ("Pull request can't be updated with latest "
                            "base branch changes, owner doesn't allow "
@@ -172,8 +172,15 @@ def compute_status_desc(pull, **extra):
     return pull.mergify_engine["weight_and_status"][1]
 
 
+def compute_base_is_modifiable(pull, **extra):
+    return (pull.raw_data["maintainer_can_modify"] or
+            (pull.raw_data["head"]["repo"]["id"]
+             == pull.raw_data["base"]["repo"]["id"]))
+
+
 # Order matter, some method need result of some other
 FULLIFIER = [
+    ("base_is_modifiable", compute_base_is_modifiable),
     ("reviews", lambda p, **extra: list(p.get_reviews())),
     ("combined_status", compute_combined_status),
     ("approvals", compute_approvals),          # Need reviews

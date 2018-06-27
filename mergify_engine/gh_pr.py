@@ -142,10 +142,6 @@ def from_cache(repo, data, **extra):
 def monkeypatch_github():
     p = github.PullRequest.PullRequest
 
-    # Missing attribute
-    p.maintainer_can_modify = property(
-        lambda p: p.raw_data["maintainer_can_modify"])
-
     p.pretty = pretty
     p.fullify = gh_pr_fullifier.fullify
     p.jsonify = gh_pr_fullifier.jsonify
