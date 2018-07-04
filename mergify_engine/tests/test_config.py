@@ -136,6 +136,43 @@ def test_automated_backport_labels():
         validate_with_get_branch_rule(config)
 
 
+def test_restrictions():
+    validate_with_get_branch_rule({
+        "rules": {
+            "default": {
+                "protection": {
+                    "restrictions": {
+                        "teams": ["foobar"],
+                    }
+                }
+            }
+        }
+    })
+    validate_with_get_branch_rule({
+        "rules": {
+            "default": {
+                "protection": {
+                    "restrictions": {
+                        "users": ["foo", "bar"],
+                    }
+                }
+            }
+        }
+    })
+    validate_with_get_branch_rule({
+        "rules": {
+            "default": {
+                "protection": {
+                    "restrictions": {
+                        "users": ["foo", "bar"],
+                        "teams": ["foobar"],
+                    }
+                }
+            }
+        }
+    })
+
+
 def test_review_count_range():
     config = {
         "rules": {
