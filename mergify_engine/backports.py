@@ -73,6 +73,7 @@ def _get_commits_to_cherrypick(pull, commit):
                 LOG.error("unhandled commit structure",
                           pull_request=pull)
                 return []
+        out_commits.reverse()
         return out_commits
 
     elif len(commit.parents) == 2:
