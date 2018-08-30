@@ -181,6 +181,54 @@ class MergifyPull(object):
         }
         return raw
 
+    def to_dict(self):
+        # Ignore reviews that are not from someone with write permissions
+        reviews = [r for r in self.g_pull.get_reviews()
+                   if r._rawData['author_association']
+                   in ("COLLABORATOR", "MEMBER", "OWNER")]
+        status = self._get_combined_status()
+        # FIXME(jd) pygithub does 2 HTTP requests whereas 1 is enough!
+        review_requested_users, review_requested_teams = (
+            self.g_pull.get_review_requests()
+        )
+        return {
+            "assignee": [a.login for a in self.g_pull.assignees],
+            "label": [l.name for l in self.g_pull.labels],
+            "review-requested": (
+                [u.login for u in review_requested_users] +
+                ["@" + t.slug for t in review_requested_teams]
+            ),
+            "author": self.g_pull.user.login,
+            "merged-by": (
+                self.g_pull.merged_by.login if self.g_pull.merged_by else ""
+            ),
+            "merged": self.g_pull.merged,
+            "state": self.g_pull.state,
+            "milestone": (
+                self.g_pull.milestone.title if self.g_pull.milestone else ""
+            ),
+            "base": self.g_pull.base.label,
+            "head": self.g_pull.head.label,
+            "locked": self.g_pull._rawData['locked'],
+            "title": self.g_pull.title,
+            "body": self.g_pull.body,
+            "files": [f.filename for f in self.g_pull.get_files()],
+            "review-approved-by": [r.user.login for r in reviews
+                                   if r.state == "APPROVED"],
+            "review-dismissed-by": [r.user for r in reviews
+                                    if r.state == "DISMISSED"],
+            "review-changes-requested-by": [r.user for r in reviews
+                                            if r.state == "CHANGES_REQUESTED"],
+            "review-commented-by": [r.user for r in reviews
+                                    if r.state == "COMMENTED"],
+            "status-success": [s.context for s in status.statuses
+                               if s.state == "success"],
+            "status-pending": [s.context for s in status.statuses
+                               if s.state == "pending"],
+            "status-failure": [s.context for s in status.statuses
+                               if s.state == "failure"],
+        }
+
     def _compute_approvals(self, branch_rule, collaborators):
         """Compute approvals.
 
