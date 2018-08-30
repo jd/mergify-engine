@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 #
 # Copyright © 2018 Mehdi Abaakouk <sileht@sileht.net>
+# Copyright © 2018 Julien Danjou <jd@mergify.io>
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -18,6 +19,8 @@ import collections
 import copy
 import re
 
+import attr
+
 import daiquiri
 
 import github
@@ -25,6 +28,9 @@ import github
 import voluptuous
 
 import yaml
+
+from mergify_engine.rules import filter
+
 
 LOG = daiquiri.getLogger(__name__)
 
@@ -67,12 +73,101 @@ Rule = voluptuous.Schema({
     'automated_backport_labels': voluptuous.Any({str: str}, None),
 })
 
-UserConfigurationSchema = voluptuous.Schema({
+
+def PullRequestRuleCondition(value):
+    if not isinstance(value, str):
+        raise voluptuous.Invalid("Condition must be a string")
+    try:
+        return filter.Filter.parse(value)
+    except filter.parser.pyparsing.ParseException as e:
+        raise voluptuous.Invalid(
+            message="Invalid condition '%s'. %s" % (value, str(e)),
+            error_message=str(e))
+
+
+PullRequestRuleConditionsSchema = voluptuous.Schema([
+    voluptuous.Any(
+        PullRequestRuleCondition,
+        voluptuous.All(
+            {
+                voluptuous.Any("and", "or"): voluptuous.Self,
+            },
+            voluptuous.Length(min=1, max=1),
+        ),
+    ),
+])
+
+
+PullRequestRulesSchema = voluptuous.Schema([{
+    voluptuous.Required('name'): str,
+    voluptuous.Required('conditions'): PullRequestRuleConditionsSchema,
+}])
+
+
+@attr.s
+class PullRequestRules:
+    rules = attr.ib(converter=PullRequestRulesSchema)
+
+    @attr.s
+    class PullRequestRuleForPR:
+        """A pull request rule that matches a pull request."""
+
+        # The list of pull request rules to match against.
+        rules = attr.ib()
+        # The pull request to test.
+        pull_request = attr.ib()
+
+        # The rules matching the pull request.
+        matching_rules = attr.ib(init=False, default=attr.Factory(list))
+        # The rules that could match in some conditions is coming.
+        next_rules = attr.ib(init=False, default=attr.Factory(list))
+        # The final rule where all matching rules are merged
+        rule = attr.ib(init=False, default=attr.Factory(dict))
+
+        def __attrs_post_init__(self):
+            d = self.pull_request.to_dict()
+            for rule in self.rules:
+                for condition in rule['conditions']:
+                    if not condition(**d):
+                        self.next_rules.append((rule, condition))
+                        break
+                else:
+                    self.matching_rules.append(rule)
+                    self.rule.update(rule)
+            try:
+                del self.rule['name']
+                del self.rule['conditions']
+            except KeyError:
+                # Can happen if no match
+                pass
+
+        def next_conditions_for(self, feature):
+            """Conditions that must match for the feature to be enabled."""
+            return list(rule[1]
+                        for rule in self.next_rules
+                        if feature in rule)
+
+    def get_pull_request_rule(self, pull_request):
+        return self.PullRequestRuleForPR(self.rules, pull_request)
+
+
+OldUserConfigurationSchema = voluptuous.Schema({
     voluptuous.Required('rules'): voluptuous.Any({
         'default': voluptuous.Any(Rule, None),
         'branches': {str: voluptuous.Any(Rule, None)},
     }, None)
 })
+
+
+NewUserConfigurationSchema = voluptuous.Schema({
+    voluptuous.Required("pull_request_rules"):
+    voluptuous.Coerce(PullRequestRules),
+})
+
+
+UserConfigurationSchema = voluptuous.Schema(
+    voluptuous.Any(NewUserConfigurationSchema, OldUserConfigurationSchema),
+)
 
 
 class NoRules(Exception):
