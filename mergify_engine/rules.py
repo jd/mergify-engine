@@ -67,12 +67,12 @@ Rule = {
     'automated_backport_labels': voluptuous.Any({str: str}, None),
 }
 
-UserConfigurationSchema = {
+UserConfigurationSchema = voluptuous.Schema({
     voluptuous.Required('rules'): voluptuous.Any({
         'default': voluptuous.Any(Rule, None),
         'branches': {str: voluptuous.Any(Rule, None)},
     }, None)
-}
+})
 
 
 class NoRules(Exception):
@@ -87,7 +87,7 @@ def validate_user_config(content):
     # NOTE(sileht): This is just to check the syntax some attributes can be
     # missing, the important thing is that once merged with the default.
     # Everything need by Github is set
-    return voluptuous.Schema(UserConfigurationSchema)(yaml.safe_load(content))
+    return UserConfigurationSchema(yaml.safe_load(content))
 
 
 def validate_merged_config(config):
