@@ -1,213 +1,144 @@
-==================
-Configuration file
-==================
+.. _configuration file format:
 
-The file format for ``mergify.yml`` is fully described here. The main entry is
-a dict whose key is named ``rules``. The value of the ``rules`` key must be a
-dict with the following optional keys:
+===========================
+ Configuration File Format
+===========================
 
-.. list-table::
-   :header-rows: 1
+The configuration file for Mergify should be named ``.mergify.yml`` and must be
+placed in the root directory of your GitHub repository. Mergify uses the
+default repository branch configured on GitHub to read the configuration file —
+usually ``master``. The file format is `YAML <http://yaml.org/>`_.
 
-   * - Key name
-     - Value type
-     - Value description
-   * - ``default``
-     - :ref:`rule`
-     - The rules to be applied by Mergify by default. See :ref:`rule` for the
-       rule format. Or ``null`` to disable Mergify by default.
+The file main entry is a dictionary whose key is named ``pull_request_rules``.
+The value of the ``pull_request_rules`` key must be a list of dictionary.
 
-   * - ``branches``
-     - ``dict``
-     - A dictionary where keys are string or regular expression (if
-       starting by ``^``) to match against branch names and the values are of
-       type :ref:`rule` or ``null`` to disable Mergify on this branch.
-
-.. _rule:
-
-Rule
-====
-
-A ``Rule`` is a dictionary with the following optional keys:
+Each dictionnary must have the following keys:
 
 .. list-table::
    :header-rows: 1
+   :widths: 1 1 2
 
-   * - Key name
-     - Value type
-     - Value description
-   * - ``protection``
-     - :ref:`Protection`
-     - The protection to be applied on pull requests.
-   * - ``disabling_label``
-     - ``string``
-     - A `label <https://help.github.com/articles/about-labels/>`_ name that
-       will disable Mergify if it is applied to a pull request. Default is
-       ``no-mergify``.
-   * - ``enabling_label``
-     - ``string``
-     - A `label <https://help.github.com/articles/about-labels/>`_ name that
-       will enable Mergify only if it is applied to a pull request. Default is
-       ``null``.
-   * - ``disabling_files``
-     - ``array of string``
-     - A list of files paths that disables Mergify if they are part of the pull
-       request. Any file that changes the behavior of the continuous integration
-       workflow should be listed. The default is ``[.mergify.yml]``. Note that
-       the engine always ignore pull requests that modify ``.mergify.yml``
-       anyway. Those pull requests will have to be merged manually, even if
-       `.mergify.yml` is not listed in this setting.
-   * - ``merge_strategy``
-     - :ref:`Merge Strategy`
-     - The method to use to merge pull requests.
-   * - ``automated_backport_labels``
-     - ``dict``
-     - A dictionary where keys are `labels
-       <https://help.github.com/articles/about-labels/>`_ name and values are
-       branch name. When a pull request is merged and labeled with one of the
-       keys, a new pull request is created on the branch associated to the
-       key. The new pull request have all commits cherry-picked from the
-       original pull request.
+   * - Key Name
+     - Value Type
+     - Value Description
+   * - ``name``
+     - string
+     - The name of the rule. This is not used by the engine directly, but is
+       used when reporting information about a rule.
+   * - ``conditions``
+     - array of :ref:`Conditions`
+     - A list of :ref:`Conditions` string that must match against the pull
+       request for the rule to be applied.
+   * - ``actions``
+     - dictionary of :ref:`Actions`
+     - A dictionnary made of :ref:`Actions` that will be executed on the
+       matching pull requests.
 
 
-.. _merge strategy:
+Example Rules
+-------------
 
-Merge Strategy
-==============
+You can define more specific rules based on the large number of criterias
+available: pull request author, base branch, labels, files, etc.
 
-A ``Merge Strategy`` defines the method to merge pull requests. It is a
-dictionary with the following optional keys:
+Here's a few example that should help you getting started.
 
-.. list-table::
-   :header-rows: 1
+Automatic Merge for Automatic Pull Requests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Some pull request might be created automatically by other tools, such as
+`Dependabot <https://dependabot.com/>`_. You might decide that there's no need
+to manually review and approve those pull request as long as your continuous
+integration system validates them.
 
-   * - Key name
-     - Value type
-     - Value description
-   * - ``method``
-     - ``string``
-     - Merge method to use. Possible values are ``merge``, ``squash`` or
-       ``rebase``. Default is ``merge``.
-   * - ``rebase_fallback``
-     - ``string``
-     - If ``method`` is set to ``rebase``, but the pull request cannot be
-       rebased, the method defined in ``rebase_fallback`` will be used instead.
-       Possible values are ``merge``, ``squash``, ``none``. Default is
-       ``merge``.
+Therefore, you could write a rule such as:
 
-.. _protection:
+.. code-block:: yaml
 
-Protection
-==========
+    pull_request_rules:
+      - name: automatic merge for Dependabot pull requests on master
+        conditions:
+          - author=dependabot[bot]
+          - status-success=continuous-integration/travis-ci
+          - base=master
+        actions:
+          merge:
+            method: merge
 
-A ``Protection`` defines the safeguards that are needed to merge pull requests
-in a branch. It is a dictionary with the following optional keys:
+That would automatically merge any pull request created by Dependabot for the
+``master`` branch where Travis CI passes.
 
-.. list-table::
-   :header-rows: 1
+Less Strict Rules for Stable Branches
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   * - Key name
-     - Value type
-     - Value description
-   * - ``required_status_checks``
-     - :ref:`Required Status Checks`
-     - Require status checks to pass before merging. Set to ``null`` to disable.
-   * - ``required_pull_request_reviews``
-     - :ref:`Required Reviews`
-     - The required criterias on code reviews for the pull request to be
-       merged. Set to ``null`` to disable.
-   * - ``restrictions``
-     - :ref:`Restriction`
-     - Restrict who can push to this branch. Team and user restrictions are
-       only available for organization-owned repositories. Set to ``null`` to
-       disable.
-   * - ``enforce_admins``
-     - ``boolean``
-     - Enforce all configured restrictions for administrators. Set to ``true``
-       to enforce required status checks for repository administrators. Set to
-       ``false`` to disable.
+Some projects like having easier review requirements for stable/maintenance
+branches. That usually means having e.g. 2 review requested for merging into
+master, but only one for a stable branch, since those pull request are
+essentially backport from ``master``.
 
-.. _required status checks:
+To automate the merge in this case, you could write some rules along those:
 
-Required Status Checks
-======================
+.. code-block:: yaml
 
-A ``Required Status Checks`` defines which other services must report a valid
-status check before a pull request can be merged. It is a dictionary with the
-following optional keys:
-
-.. list-table::
-   :header-rows: 1
-
-   * - Key name
-     - Value type
-     - Value description
-   * - ``strict``
-     - ``boolean``
-     - Require branches to be up to date before merging. See
-       :doc:`strict-workflow`.
-   * - ``contexts``
-     - ``array``
-     - The list of status checks to require in order to merge into this branch
-
-.. _required reviews:
-
-Required Reviews
-================
-
-A ``Required Reviews`` defines what kind of `reviews
-<https://help.github.com/articles/about-pull-request-reviews/>`_ are needed for
-a pull request to be merged. It is a dictionary with the following optional
-keys:
-
-.. list-table::
-   :header-rows: 1
-
-   * - Key name
-     - Value type
-     - Value description
-   * - ``dismiss_stale_reviews``
-     - ``boolean``
-     - Set to ``true`` if you want to automatically dismiss approving reviews
-       when someone pushes a new commit.
-   * - ``require_code_owner_reviews``
-     - ``boolean``
-     - Blocks merging pull requests until `code owners
-       <https://help.github.com/articles/about-codeowners/>`_ review them.
-   * - ``required_approving_review_count``
-     - ``integer``
-     - Specify the number of reviewers required to approve pull requests. Use a
-       number between 1 and 6. If you don't need any reviewer, set
-       ``required_pull_request_reviews`` to ``null`` instead.
-
-.. _restriction:
-
-Restriction
-===========
-
-A ``Restriction`` defines a list of user or team for whom a restriction
-applies. It is a dictionary with the following optional keys:
-
-.. list-table::
-   :header-rows: 1
-
-   * - Key name
-     - Value type
-     - Value description
-   * - ``users``
-     - ``array``
-     - The list of user logins with push access.
-   * - ``teams``
-     - ``array``
-     - The list of team slugs with push access
+    pull_request_rules:
+      - name: automatic merge for master when reviewed and CI passes
+        conditions:
+          - status-success=continuous-integration/travis-ci
+          - "#approved-reviews-by>=2"
+          - base=master
+        actions:
+          merge:
+            method: merge
+      - name: automatic merge for stable branches
+        conditions:
+          - status-success=continuous-integration/travis-ci
+          - "#approved-reviews-by>=1"
+          - base~=^stable/
+        actions:
+          merge:
+            method: merge
 
 
-.. _default:
+Using Labels to Enable/Disable merge
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Default branch configuration
-============================
+Some developers are not comfortable with having a final step before merging the
+code. In that case, you can add a condition using a ``label``:
 
-The default configuration for all branches is the following:
+.. code-block:: yaml
 
-.. literalinclude:: ../../mergify_engine/data/default_rule.yml
+    pull_request_rules:
+      - name: automatic merge for master when reviewed and CI passes
+        conditions:
+          - status-success=continuous-integration/travis-ci
+          - "#approved-reviews-by>=2"
+          - base=master
+          - label=ready-to-merge
+        actions:
+          merge:
+            method: merge
+
+As soon as the pull request has been approved by 2 contributors and gets the
+`label <https://help.github.com/articles/labeling-issues-and-pull-requests/>`_
+``ready-to-be-merged``, the pull request will be merged by Mergify.
+
+On the other hand, some developers wants an option to disable the automatic
+merge feature with a label. This can be useful to indicate that a pull request
+labelled as ``work-in-progress`` should not be merged:
+
+.. code-block:: yaml
+
+    pull_request_rules:
+      - name: automatic merge for master when reviewed and CI passes
+        conditions:
+          - status-success=continuous-integration/travis-ci
+          - "#approved-reviews-by>=2"
+          - base=master
+          - label!=work-in-progress
+        actions:
+          merge:
+            method: merge
+
+In that case, if a pull request gets labelled with ``work-in-progress``, it
+won't be merged, even if approved by 2 contributors and having Travis CI
+passing.
