@@ -7,10 +7,11 @@ Welcome to the `mergify.io <https://mergify.io>`_ documentation!
    :maxdepth: 2
 
    getting-started
-   strict-workflow
-   automated-backport
-   disabling
    configuration
+   conditions
+   actions
+   strict-workflow
    faq
+   v1/index
 
 Any question? You can reach `the support <mailto:support@mergify.io>`_ out.
