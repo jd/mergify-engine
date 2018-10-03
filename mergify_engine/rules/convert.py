@@ -26,8 +26,9 @@ def _safe_getter(rule, path, default=None):
 
 
 def _convert_merge_rule(rule, branch_name=None):
-    if rule is None and branch_name is None:
+    if rule is None:
         return []
+
     default_merge_strategy_method = _safe_getter(rule, (
         'merge_strategy', 'method'))
     default_merge_rebase_fallback = _safe_getter(rule, (
