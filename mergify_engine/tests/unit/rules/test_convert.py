@@ -206,3 +206,41 @@ def test_convert_rebase_fallback():
     ]
     # Validate generated conf with the schema
     rules.PullRequestRules(converted)
+
+
+def test_null_branch():
+    old_rules = {
+        'rules': {
+            'default': {
+                'protection': {
+                    'required_pull_request_reviews': {
+                        'required_approving_review_count': 1
+                    },
+                    'required_status_checks': {
+                        'contexts': ['continuous-integration/travis-ci'],
+                    }},
+                'merge_strategy': {
+                    'method': 'rebase',
+                }},
+            'branches': {
+                'gh-pages': None,
+            },
+        },
+    }
+    converted = convert.convert_config(old_rules["rules"])
+    assert converted == [
+        {
+            "name": "default",
+            "conditions": ["label!=no-mergify",
+                           "#approved-reviews-by>=1",
+                           "status-success=continuous-integration/travis-ci"],
+            "actions": {
+                "merge": {
+                    "method": "rebase",
+                    "rebase_fallback": "merge",
+                },
+            },
+        },
+    ]
+    # Validate generated conf with the schema
+    rules.PullRequestRules(converted)

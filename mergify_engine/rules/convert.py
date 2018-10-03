@@ -17,6 +17,9 @@ from mergify_engine import rules as mrules
 
 
 def _convert_merge_rule(rule, branch_name=None):
+    if rule is None:
+        return []
+
     default_merge_strategy_method = rule.get(
         'merge_strategy', {}).get('method')
     default_merge_rebase_fallback = rule.get(
