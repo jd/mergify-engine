@@ -75,6 +75,14 @@ def test_regexp():
     assert f(foo="foobaz")
     assert not f(foo="x")
 
+def test_does_not_contain():
+    f = filter.Filter({
+        "!=": ("foo", 1),
+    })
+    assert f(foo=[])
+    assert f(foo=[2, 3])
+    assert not f(foo=(1, 2))
+
 
 def test_contains():
     f = filter.Filter({
