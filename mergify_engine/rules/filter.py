@@ -103,6 +103,8 @@ class Filter:
         if operator in self.unary_operators:
             return operator + self._tree_to_str(nodes)
         if operator in self.binary_operators:
+            if isinstance(nodes[1], bool):
+                return ("" if nodes[1] else "-") +  str(nodes[0])
             return str(nodes[0]) + operator + str(nodes[1])
         raise RuntimeError(
             "Unable to convert tree to string: unknown operator: %s"
