@@ -1,0 +1,882 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="Mergify Documentation for Actions" name="description" />
+<meta content="mergify, automation, actions" name="keywords" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>🚀 Actions &#8212; Mergify  documentation</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g==" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/mergify.css" type="text/css" />
+
+  
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js" integrity="sha512-8qmis31OQi6hIRgvkht0s6mCOittjMa9GMqtK9hes5iEQBQE/Ca6yGE5FsW36vyipGoWQswBj/QBm2JR086Rkw==" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="_static/mergify.js"></script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-118666091-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="⚙️ Commands" href="commands.html" />
+    <link rel="prev" title="🎯 Conditions" href="conditions.html" /> 
+  </head><body>
+<div class="body-container">
+  <nav class="navbar navbar-expand-md sticky-top navbar-light bg-white flex-wrap">
+  <a class="navbar-brand" href="index.html">
+    <img class="logo" src="_static/mergify-logo-horizontal.png" alt="Mergify"/>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse" id="exCollapsingNavbar2">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="https://mergify.io" target="_blank">Home</a>
+      </li>
+            <li class="nav-item">
+        <a class="nav-link" href="https://blog.mergify.io" target="_blank">Blog</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://dashboard.mergify.io" target="_blank">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/Mergifyio/mergify-engine/discussions" target="_blank">Discussions</a>
+      </li>
+    </ul>
+    <div class="dropdown-divider d-block d-sm-none mb-4"></div>
+    <form class="form-inline" action="search.html" method="get">
+      <input type="text" name="q" class="form-control mr-sm-2" placeholder="Search" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+  <nav class="related d-flex justify-content-between flex-wrap" role="navigation" aria-label="related navigation">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.html">Mergify  documentation</a></li>
+    <li class="breadcrumb-item active">🚀 Actions</li>
+  </ol>
+  <div>
+    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+      <a href="conditions.html" title="Previous Chapter: 🎯 Conditions" class="btn btn-primary" role="button" accesskey="P">
+        &laquo; 🎯 Conditions
+      </a>
+      <a href="commands.html" title="Next Chapter: ⚙️ Commands" class="btn btn-primary" role="button" accesskey="N">
+        ⚙️ Commands &raquo;
+      </a>
+    </div>
+  </div>
+</nav>
+  <div class="main container-fluid">
+    <div class="row">
+      <div class="sphinxsidebar col-12 col-lg-4 col-xl-3" aria-label="main navigation"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">➡️ Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#understanding-mergify-check-report">Understanding Mergify Check Report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#controlling-mergify-with-commands">Controlling Mergify with Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">🔖 Configuration File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#file-used">File Used</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#format">Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#data-types">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#validation">Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conditions.html">🎯 Conditions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#grammar">Grammar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#attributes">Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#operators">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#how-to-match-lists">How To Match Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#implementing-or-conditions">Implementing Or Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#about-status-checks">About Status Checks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">🚀 Actions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#assign">assign</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#backport">backport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copy">copy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#comment">comment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#review">review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#close">close</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#delete-head-branch">delete_head_branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dismiss-reviews">dismiss_reviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#label">label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#merge">merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#request-reviews">request_reviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rebase">rebase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#update">update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#post-check">post_check</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">⚙️ Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#rebase">rebase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#update">update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#backport">backport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#refresh">refresh</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="merge-action.html">🔀 Delving into the Merge Action</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="merge-action.html#strict-merge">Strict Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merge-action.html#git-merge-workflow-and-mergify-equivalent-configuration">Git merge workflow and Mergify equivalent configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">🧪 Example Rules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#automatic-merge-when-ci-works-and-approving-reviews">✅ Automatic Merge when CI works and approving reviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#using-regular-expressions">🌀 Using Regular Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#merging-based-on-modified-files">🗂 Merging based on Modified Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#using-labels-to-backport-pull-requests">👩‍🔧 Using Labels to Backport Pull-Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#deleting-merged-branch">✂️ Deleting Merged Branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#less-strict-rules-for-stable-branches">🏖 Less Strict Rules for Stable Branches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#using-labels-to-enable-disable-merge">🎬 Using Labels to Enable/Disable Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#using-labels-to-prioritize-merge">⚡️ Using Labels to Prioritize Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#removing-stale-reviews">🥶 Removing Stale Reviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#require-all-requested-reviews-to-be-approved">🙅️ Require All Requested Reviews to Be Approved</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#welcoming-your-contributors">💌 Welcoming your Contributors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#request-for-action">🤜 Request for Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#flexible-reviewers-assignment">👀 Flexible Reviewers Assignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#running-ci-pipelines-automatically">💬 Running CI pipelines automatically</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#enforcing-pull-request-guidelines">📜 Enforcing Pull Request Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#bots">🤖 Bots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="badge.html">🎖 Badge</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="badge.html#embedding">Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="badge.html#styles">Styles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">💬 FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#mergify-is-unable-to-merge-my-pull-request-due-to-my-branch-protection-settings">Mergify is unable to merge my pull request due to my branch protection settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#why-did-mergify-seem-to-have-merged-my-pull-request-whereas-all-conditions-were-not-true">Why did Mergify seem to have merged my pull request whereas all conditions were not true?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#i-see-a-rebase-and-force-push-done-by-a-member-of-the-repository-but-mergify-actually-did-it">I see a rebase and force-push done by a member of the repository, but Mergify actually did it.</a></li>
+</ul>
+</li>
+</ul>
+
+
+      </div>
+      <div class="document col-12 col-lg-8 col-xl-9">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="actions">
+<span id="id1"></span><h1>🚀 Actions<a class="headerlink" href="#actions" title="Permalink to this headline"> 🔗</a></h1>
+<p>When a pull request matches the list of <a class="reference internal" href="conditions.html#conditions"><span class="std std-ref">🎯 Conditions</span></a> of a rule, the
+actions configured in that rule are executed by Mergify. The actions should be
+put under the <code class="docutils literal notranslate"><span class="pre">actions</span></code> key in the <code class="docutils literal notranslate"><span class="pre">pull_request_rules</span></code> entry — see
+<a class="reference internal" href="configuration.html#configuration-file-format"><span class="std std-ref">🔖 Configuration File</span></a>.</p>
+<p>The list of available actions is listed below, with their parameters:</p>
+<div class="section" id="assign">
+<span id="assign-action"></span><h2>assign<a class="headerlink" href="#assign" title="Permalink to this headline"> 🔗</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">assign</span></code> action assigns users to the pull request.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key Name</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Value Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">add_users</span></code></p></td>
+<td><p>list of <a class="reference internal" href="configuration.html#data-type-template"><span class="std std-ref">Template</span></a></p></td>
+<td></td>
+<td><p>The users to assign to the pull request.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">remove_users</span></code></p></td>
+<td><p>list of <a class="reference internal" href="configuration.html#data-type-template"><span class="std std-ref">Template</span></a></p></td>
+<td></td>
+<td><p>The users to remove from assignees.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The list of users in <code class="docutils literal notranslate"><span class="pre">add_users</span></code> or <code class="docutils literal notranslate"><span class="pre">remove_users</span></code> is based on <a class="reference internal" href="configuration.html#data-type-template"><span class="std std-ref">Template</span></a>, you can use
+e.g. <code class="docutils literal notranslate"><span class="pre">{{author}}</span></code> to assign the pull request to its author.</p>
+</div>
+<div class="section" id="backport">
+<span id="backport-action"></span><h2>backport<a class="headerlink" href="#backport" title="Permalink to this headline"> 🔗</a></h2>
+<p>It is common for software to have (some of) their major versions maintained
+over an extended period. Developers usually create stable branches that are
+maintained for a while by cherry-picking patches from the development branch.</p>
+<p>This process is called <em>backporting</em> as it implies that bug fixes merged into
+the development branch are ported back to the stable branch(es). The stable
+branch can then be used to release a new minor version of the software, fixing
+some of its bugs.</p>
+<p>As this process of backporting patches can be tedious, Mergify automates this
+mechanism to save developers’ time and ease their duty.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">backport</span></code> action copies the pull request into another branch <em>once the
+pull request has been merged</em>. The <code class="docutils literal notranslate"><span class="pre">backport</span></code> action takes the following
+parameter:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key Name</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Value Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">branches</span></code></p></td>
+<td><p>list of string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
+<td><p>The list of branches the pull request should be copied to.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">regexes</span></code></p></td>
+<td><p>list of string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
+<td><p>The list of regexes to find branches the pull request should be copied
+to.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ignore_conflicts</span></code></p></td>
+<td><p>Boolean</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>Whether to create the pull requests even if they are conflicts when
+cherry-picking the commits.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">label_conflicts</span></code></p></td>
+<td><p>string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conflicts</span></code></p></td>
+<td><p>The label to add to the created pull requested if it has conflicts and
+<code class="docutils literal notranslate"><span class="pre">ignore_conflicts</span></code> is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Once the backporting pull request is closed or merged, Mergify will
+automatically delete the backport head branch that it created.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the repository is bigger than 512 MB, the <code class="docutils literal notranslate"><span class="pre">backport</span></code> action is only
+available for <a class="reference external" href="https://mergify.io/pricing">Essential and Premium subscribers</a>.
+<div style="text-align: right"><a href="https://mergify.io/pricing" target="_blank"><span class="badge badge-success">Essential Plan feature 💪</span></a></div>
+<div style="text-align: right"><a href="https://mergify.io/pricing" target="_blank"><span class="badge badge-warning">Premium Plan feature 🦾</span></a></div></p>
+</div>
+</div>
+<div class="section" id="copy">
+<h2>copy<a class="headerlink" href="#copy" title="Permalink to this headline"> 🔗</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">copy</span></code> action creates a copy of the pull request targetting other branches.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key Name</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Value Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">branches</span></code></p></td>
+<td><p>list of string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
+<td><p>The list of branches the pull request should be copied to.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">regexes</span></code></p></td>
+<td><p>list of string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
+<td><p>The list of regexes to find branches the pull request should be copied to.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ignore_conflicts</span></code></p></td>
+<td><p>Boolean</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>Whether to create the pull requests even if they are conflicts when
+cherry-picking the commits.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">label_conflicts</span></code></p></td>
+<td><p>string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conflicts</span></code></p></td>
+<td><p>The label to add to the created pull requested if it has conflicts and
+<code class="docutils literal notranslate"><span class="pre">ignore_conflicts</span></code> is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the repository is bigger than 512 MB, the <code class="docutils literal notranslate"><span class="pre">copy</span></code> action is only
+available for <a class="reference external" href="https://mergify.io/pricing">Essential and Premium  Plan subscribers</a>.
+<div style="text-align: right"><a href="https://mergify.io/pricing" target="_blank"><span class="badge badge-success">Essential Plan feature 💪</span></a></div>
+<div style="text-align: right"><a href="https://mergify.io/pricing" target="_blank"><span class="badge badge-warning">Premium Plan feature 🦾</span></a></div></p>
+</div>
+</div>
+<div class="section" id="comment">
+<span id="comment-action"></span><h2>comment<a class="headerlink" href="#comment" title="Permalink to this headline"> 🔗</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">comment</span></code> action adds a comment to the pull request.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key Name</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Value Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">message</span></code></p></td>
+<td><p><a class="reference internal" href="configuration.html#data-type-template"><span class="std std-ref">Template</span></a></p></td>
+<td></td>
+<td><p>The message to write as a comment.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="review">
+<span id="review-action"></span><h2>review<a class="headerlink" href="#review" title="Permalink to this headline"> 🔗</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">review</span></code> action reviews the pull request.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key Name</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Value Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p>string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">APPROVE</span></code></p></td>
+<td><p>The kind of review, can be <code class="docutils literal notranslate"><span class="pre">APPROVE</span></code>, <code class="docutils literal notranslate"><span class="pre">REQUEST_CHANGES</span></code>, <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">message</span></code></p></td>
+<td><p><a class="reference internal" href="configuration.html#data-type-template"><span class="std std-ref">Template</span></a></p></td>
+<td></td>
+<td><p>The message to write as a comment.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bot_account</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+<td><p>Mergify can impersonate a GitHub user to review a pull request.
+If no <code class="docutils literal notranslate"><span class="pre">bot_account</span></code> is set, Mergify will review the pull request
+itself.</p>
+<p><div style="text-align: right"><a href="https://mergify.io/pricing" target="_blank"><span class="badge badge-warning">Premium Plan feature 🦾</span></a></div></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="close">
+<span id="close-action"></span><h2>close<a class="headerlink" href="#close" title="Permalink to this headline"> 🔗</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">close</span></code> action closes the pull request without merging it.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key Name</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Value Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">message</span></code></p></td>
+<td><p><a class="reference internal" href="configuration.html#data-type-template"><span class="std std-ref">Template</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">This</span> <span class="pre">pull</span> <span class="pre">request</span> <span class="pre">has</span> <span class="pre">been</span> <span class="pre">automatically</span> <span class="pre">closed</span> <span class="pre">by</span> <span class="pre">Mergify.</span></code></p></td>
+<td><p>The message to write as a comment after closing the pull request.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="delete-head-branch">
+<span id="delete-head-branch-action"></span><h2>delete_head_branch<a class="headerlink" href="#delete-head-branch" title="Permalink to this headline"> 🔗</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">delete_head_branch</span></code> action deletes the head branch of the pull request,
+that is the branch which hosts the commits. This only works if the branch is
+stored in the same repository that the pull request target, i.e., if the pull
+request comes from the same repository and not from a fork.</p>
+<p>This action takes no configuration options. The action will only happen if and
+when the pull request is closed or merged: you can decide what suits you best
+using <a class="reference internal" href="conditions.html#conditions"><span class="std std-ref">🎯 Conditions</span></a>.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key Name</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Value Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">force</span></code></p></td>
+<td><p>Boolean</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>If set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, the branch will be deleted even if another pull
+request depends on the head branch. GitHub will therefore close the
+dependent pull requests.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="dismiss-reviews">
+<span id="dismiss-reviews-action"></span><h2>dismiss_reviews<a class="headerlink" href="#dismiss-reviews" title="Permalink to this headline"> 🔗</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">dismiss_reviews</span></code> action removes reviews done by collaborators when the
+pull request is updated. This is especially useful to make sure that a review
+does not stay when the branch is updated (e.g., new commits are added or the
+branch is rebased).</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key Name</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Value Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">approved</span></code></p></td>
+<td><p>Boolean or list of string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>If set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, all the approving reviews will be removed when the
+pull request is updated. If set to <code class="docutils literal notranslate"><span class="pre">false</span></code>, nothing will be done. If
+set to a list, each item should be the GitHub login of a user whose
+review will be removed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">changes_requested</span></code></p></td>
+<td><p>Boolean or list of string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>If set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, all the reviews requesting changes will be removed
+when the pull request is updated. If set to <code class="docutils literal notranslate"><span class="pre">false</span></code>, nothing will be
+done. If set to a list, each item should be the GitHub login of a user
+whose review will be removed.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">message</span></code></p></td>
+<td><p><a class="reference internal" href="configuration.html#data-type-template"><span class="std std-ref">Template</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Pull</span> <span class="pre">request</span> <span class="pre">has</span> <span class="pre">been</span> <span class="pre">modified.</span></code></p></td>
+<td><p>The message to post when dismissing the review.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="label">
+<span id="label-action"></span><h2>label<a class="headerlink" href="#label" title="Permalink to this headline"> 🔗</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">label</span></code> action can add or remove <a class="reference external" href="https://help.github.com/articles/about-labels/">labels</a> from a pull request.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key Name</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Value Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">add</span></code></p></td>
+<td><p>list of string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
+<td><p>The list of labels to add.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">remove</span></code></p></td>
+<td><p>list of string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
+<td><p>The list of labels to remove.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">remove_all</span></code></p></td>
+<td><p>Boolean</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>Remove all labels from the pull request.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="merge">
+<span id="merge-action"></span><h2>merge<a class="headerlink" href="#merge" title="Permalink to this headline"> 🔗</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">merge</span></code> action merges the pull request into its base branch. The
+<code class="docutils literal notranslate"><span class="pre">merge</span></code> action takes the following parameter:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key Name</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Value Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">method</span></code></p></td>
+<td><p>string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">merge</span></code></p></td>
+<td><p>Merge method to use. Possible values are <code class="docutils literal notranslate"><span class="pre">merge</span></code>, <code class="docutils literal notranslate"><span class="pre">squash</span></code> or
+<code class="docutils literal notranslate"><span class="pre">rebase</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rebase_fallback</span></code></p></td>
+<td><p>string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">merge</span></code></p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">method</span></code> is set to <code class="docutils literal notranslate"><span class="pre">rebase</span></code>, but the pull request cannot be
+rebased, the method defined in <code class="docutils literal notranslate"><span class="pre">rebase_fallback</span></code> will be used instead.
+Possible values are <code class="docutils literal notranslate"><span class="pre">merge</span></code>, <code class="docutils literal notranslate"><span class="pre">squash</span></code>, <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">strict</span></code></p></td>
+<td><p>Boolean, <code class="docutils literal notranslate"><span class="pre">smart</span></code> or <code class="docutils literal notranslate"><span class="pre">smart+fasttrack</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>Determines whether to use <a class="reference internal" href="merge-action.html#strict-merge"><span class="std std-ref">Strict Merge</span></a>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">true</span></code> enables <a class="reference internal" href="merge-action.html#strict-merge"><span class="std std-ref">Strict Merge</span></a>. The pull request will be merged
+only once up-to-date with its base branch. When multiple pull requests
+are ready to be merged, they will <strong>all</strong> be updated with their base
+branch at the same time, and the first ready to be merged will be
+merged; the remaining pull request will be updated once again.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">smart</span></code> enables <a class="reference internal" href="merge-action.html#strict-merge"><span class="std std-ref">Strict Merge</span></a> but only update one pull request
+against its base branch at a time.
+This allows you to e.g., save CI time, as Mergify will queue the
+mergeable pull requests and update them serially, one at a time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">smart+fasttrack</span></code> enables <a class="reference internal" href="merge-action.html#strict-merge"><span class="std std-ref">Strict Merge</span></a> with the same behavior as <code class="docutils literal notranslate"><span class="pre">smart</span></code>,
+except if the pull request is already in sync with its base branch,
+the queue is bypassed and the pull request is directly merged.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">false</span></code> disables <a class="reference internal" href="merge-action.html#strict-merge"><span class="std std-ref">Strict Merge</span></a> and merge pull requests as soon
+as possible, without bringing the pull request up-to-date with its
+base branch.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">strict_method</span></code></p></td>
+<td><p>string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">merge</span></code></p></td>
+<td><p>Method to use to update the pull request with its base branch
+when <a class="reference internal" href="merge-action.html#strict-merge"><span class="std std-ref">Strict Merge</span></a> is enabled. Possible values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">merge</span></code> to merge the base branch into the pull request.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rebase</span></code> to rebase the pull request against its base branch.</p></li>
+</ul>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">rebase</span></code> method has some drawbacks, see <a class="reference internal" href="#strict-rebase"><span class="std std-ref">Strict Rebase</span></a>.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">merge_bot_account</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+<td><p>Mergify can impersonate a GitHub user to merge pull request.
+If no <code class="docutils literal notranslate"><span class="pre">merge_bot_account</span></code> is set, Mergify will merge the pull request
+itself. The user account <strong>must</strong> have already been
+logged in Mergify dashboard once and have <strong>write</strong> or <strong>maintain</strong> permission.</p>
+<p><div style="text-align: right"><a href="https://mergify.io/pricing" target="_blank"><span class="badge badge-warning">Premium Plan feature 🦾</span></a></div></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">update_bot_account</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+<td><p>For certain actions, such as rebasing branches, Mergify has to
+impersonate a GitHub user. You can specify the account to use with this
+option. If no <code class="docutils literal notranslate"><span class="pre">update_bot_account</span></code> is set, Mergify picks randomly one of the
+organization users instead. The user account <strong>must</strong> have already been
+logged in Mergify dashboard once.</p>
+<p><div style="text-align: right"><a href="https://mergify.io/pricing" target="_blank"><span class="badge badge-warning">Premium Plan feature 🦾</span></a></div></p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">priority</span></code></p></td>
+<td><p>1 &lt;= integer &lt;= 10000 or <code class="docutils literal notranslate"><span class="pre">low</span></code> or <code class="docutils literal notranslate"><span class="pre">medium</span></code> or <code class="docutils literal notranslate"><span class="pre">high</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">medium</span></code></p></td>
+<td><p>This sets the priority of the pull request in the queue when <code class="docutils literal notranslate"><span class="pre">smart</span></code>
+<a class="reference internal" href="merge-action.html#strict-merge"><span class="std std-ref">Strict Merge</span></a> is enabled. The pull request with the highest priority is merged first.
+<code class="docutils literal notranslate"><span class="pre">low</span></code>, <code class="docutils literal notranslate"><span class="pre">medium</span></code>, <code class="docutils literal notranslate"><span class="pre">high</span></code> are aliases for <code class="docutils literal notranslate"><span class="pre">1000</span></code>, <code class="docutils literal notranslate"><span class="pre">2000</span></code>, <code class="docutils literal notranslate"><span class="pre">3000</span></code>.</p>
+<p><div style="text-align: right"><a href="https://mergify.io/pricing" target="_blank"><span class="badge badge-warning">Premium Plan feature 🦾</span></a></div></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">commit_message</span></code></p></td>
+<td><p>string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">default</span></code></p></td>
+<td><p>Defines what commit message to use when merging using the <code class="docutils literal notranslate"><span class="pre">squash</span></code> or
+<code class="docutils literal notranslate"><span class="pre">merge</span></code> method. Possible values are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">default</span></code> to use the default commit message provided by GitHub
+or defined in the pull request body (see <a class="reference internal" href="#commit-message"><span class="std std-ref">Defining the Commit Message</span></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">title+body</span></code> means to use the title and body from the pull request
+itself as the commit message. The pull request number will be added to
+end of the title.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="branch-protection-settings">
+<h3>Branch Protection Settings<a class="headerlink" href="#branch-protection-settings" title="Permalink to this headline"> 🔗</a></h3>
+<p>Note that Mergify will always respect the branch protection settings. When the
+conditions match and the <code class="docutils literal notranslate"><span class="pre">merge</span></code> action runs, Mergify waits for the branch
+protection to be validated before merging the pull request.</p>
+</div>
+<div class="section" id="defining-the-commit-message">
+<span id="commit-message"></span><h3>Defining the Commit Message<a class="headerlink" href="#defining-the-commit-message" title="Permalink to this headline"> 🔗</a></h3>
+<p>When a pull request is merged using the <code class="docutils literal notranslate"><span class="pre">squash</span></code> or <code class="docutils literal notranslate"><span class="pre">merge</span></code> method, you can
+override the default commit message. To that end, you need to add a section in
+the pull request body that starts with <code class="docutils literal notranslate"><span class="pre">Commit</span> <span class="pre">Message</span></code>.</p>
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span><span class="gu">## Commit Message</span>
+
+My wanted commit title
+
+The whole commit message finishes at the end of the pull request body or
+before a new Markdown title.
+</pre></div>
+</div>
+<p>The whole commit message finishes at the end of the pull request body or before
+a new Markdown title.</p>
+<p>You can use any available attributes of the pull request in the commit message,
+by writing using the <a class="reference internal" href="configuration.html#data-type-template"><span class="std std-ref">templating</span></a> language:</p>
+<p>For example:</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="x">## Commit Message</span>
+
+<span class="cp">{{</span><span class="nv">title</span><span class="cp">}}</span><span class="x"></span>
+
+<span class="x">This pull request implements magnificient features, and I would like to</span>
+<span class="x">talk about them. This has been written by </span><span class="cp">{{</span><span class="nv">author</span><span class="cp">}}</span><span class="x"> and has been reviewed</span>
+<span class="x">by:</span>
+
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">user</span> <span class="k">in</span> <span class="nv">approved_reviews_by</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">- </span><span class="cp">{{</span><span class="nv">user</span><span class="cp">}}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Check the <a class="reference internal" href="configuration.html#data-type-template"><span class="std std-ref">Template</span></a> for more details on the format.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This feature only works when <code class="docutils literal notranslate"><span class="pre">commit_message</span></code> is set to <code class="docutils literal notranslate"><span class="pre">default</span></code>.</p>
+</div>
+</div>
+<div class="section" id="strict-rebase">
+<span id="id2"></span><h3>Strict Rebase<a class="headerlink" href="#strict-rebase" title="Permalink to this headline"> 🔗</a></h3>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">rebase</span></code> method for the strict merge has many drawbacks:</p>
+<ul class="simple">
+<li><p>It doesn’t work for private forked repositories.</p></li>
+<li><p>It doesn’t work if Mergify is used as a GitHub Action.</p></li>
+<li><p>Due to the change of all commits SHA-1 of the pull request, your
+contributor will need to force-push its own branch if they add new
+commits.</p></li>
+<li><p>GitHub branch protection of your repository may dismiss approved reviews.</p></li>
+<li><p>GitHub branch protection of the contributor repository may refuse Mergify to
+force push the rebased pull request.</p></li>
+<li><p>GPG signed commits will lost their signatures.</p></li>
+<li><p>Mergify will use a token from one of the repository member to force-push the
+branch. GitHub Applications are not allowed to do that so. This is a GitHub
+limitation that we already have reported — there is not much Mergify can do
+about that. In order to make this works, Mergify randomly picks and borrows a
+token from one of your repository member and uses it to force-push the
+rebased branch. The GitHub UI will show your collaborator as the author of
+the push, while it actually has been executed by Mergify.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="request-reviews">
+<span id="request-reviews-action"></span><h2>request_reviews<a class="headerlink" href="#request-reviews" title="Permalink to this headline"> 🔗</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">request_reviews</span></code> action requests reviews from users for the pull
+request.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key Name</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Value Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">users</span></code></p></td>
+<td><p>list of string or dictionary of login and weight</p></td>
+<td></td>
+<td><p>The username to request reviews from.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">teams</span></code></p></td>
+<td><p>list of string or dictionary of login and weight</p></td>
+<td></td>
+<td><p>The team name to request reviews from.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">random_count</span></code></p></td>
+<td><p>integer between 1 and 15</p></td>
+<td></td>
+<td><p>Pick random users and teams from the provided lists. When
+<code class="docutils literal notranslate"><span class="pre">random_count</span></code> is specified, <code class="docutils literal notranslate"><span class="pre">users</span></code> and <code class="docutils literal notranslate"><span class="pre">teams</span></code> can be a
+dictionary where the key is the login and the value is the weight to use.
+Weight must be between 1 and 65535 included.</p>
+<p><div style="text-align: right"><a href="https://mergify.io/pricing" target="_blank"><span class="badge badge-success">Essential Plan feature 💪</span></a></div></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>GitHub does not allow to request more 15 users or teams for a review.</p>
+</div>
+</div>
+<div class="section" id="rebase">
+<span id="rebase-action"></span><h2>rebase<a class="headerlink" href="#rebase" title="Permalink to this headline"> 🔗</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">rebase</span></code> action will rebase the pull request against its base branch.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key Name</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Value Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">update_bot_account</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+<td><p>For certain actions, such as rebasing branches, Mergify has to
+impersonate a GitHub user. You can specify the account to use with this
+option. If no <code class="docutils literal notranslate"><span class="pre">update_bot_account</span></code> is set, Mergify picks randomly one of the
+organization users instead. The user account <strong>must</strong> have already been
+logged in Mergify dashboard once.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Be aware that rebasing force-pushes the pull request head branch: any change
+done to that branch while Mergify is rebasing will be lost.</p>
+</div>
+</div>
+<div class="section" id="update">
+<span id="update-action"></span><h2>update<a class="headerlink" href="#update" title="Permalink to this headline"> 🔗</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">update</span></code> action updates the pull request against its base branch.</p>
+</div>
+<div class="section" id="post-check">
+<h2>post_check<a class="headerlink" href="#post-check" title="Permalink to this headline"> 🔗</a></h2>
+<p><div style="text-align: right"><a href="https://mergify.io/pricing" target="_blank"><span class="badge badge-warning">Premium Plan feature 🦾</span></a></div></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">post_check</span></code> action adds an item in a pull request check list. The check
+status is <code class="docutils literal notranslate"><span class="pre">success</span></code> when all conditions match, otherwise, it is set to
+<code class="docutils literal notranslate"><span class="pre">failure</span></code>.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key Name</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Value Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">title</span></code></p></td>
+<td><p><a class="reference internal" href="configuration.html#data-type-template"><span class="std std-ref">Template</span></a></p></td>
+<td></td>
+<td><p>The title of the check.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">summary</span></code></p></td>
+<td><p><a class="reference internal" href="configuration.html#data-type-template"><span class="std std-ref">Template</span></a></p></td>
+<td></td>
+<td><p>The summary of the check.</p></td>
+</tr>
+</tbody>
+</table>
+<p>As the <code class="docutils literal notranslate"><span class="pre">title</span></code> and <code class="docutils literal notranslate"><span class="pre">summary</span></code> use on <a class="reference internal" href="configuration.html#data-type-template"><span class="std std-ref">Template</span></a>, you can
+benefit from any pull request attributes e.g. <code class="docutils literal notranslate"><span class="pre">{{author}}</span></code> and also these
+additional variables:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">check_rule_name</span> <span class="pre">}}</span></code> the name of the rule that triggered this action.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">check_succeed</span> <span class="pre">}}</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> if all conditions matches otherwise <code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">check_conditions</span> <span class="pre">}}</span></code> the list of all conditions with a checkbox marked if the condition match</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="clearer"></div>
+    </div>
+  </div>
+</div>
+<footer class="footer d-flex justify-content-between flex-wrap">
+    <div class="copyright">
+        <div>&copy; Copyright 2021, Mergify</div>
+    </div>
+    <div>
+      <a href="https://github.com/Mergifyio/mergify-engine/tree/master/docs/source/actions.rst"
+         class="btn btn-dark btn-sm active">
+        Edit on GitHub <i class="fas fa-external-link-square-alt"></i>
+      </a>
+    </div>
+    <div>
+        <a href="#" class="btn btn-primary btn-sm" role="button">Back to top</a>
+    </div>
+</footer>
+  </body>
+</html>

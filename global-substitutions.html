@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>&lt;no title&gt; &#8212; Mergify  documentation</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g==" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/mergify.css" type="text/css" />
+
+  
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js" integrity="sha512-8qmis31OQi6hIRgvkht0s6mCOittjMa9GMqtK9hes5iEQBQE/Ca6yGE5FsW36vyipGoWQswBj/QBm2JR086Rkw==" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="_static/mergify.js"></script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-118666091-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+<div class="body-container">
+  <nav class="navbar navbar-expand-md sticky-top navbar-light bg-white flex-wrap">
+  <a class="navbar-brand" href="index.html">
+    <img class="logo" src="_static/mergify-logo-horizontal.png" alt="Mergify"/>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse" id="exCollapsingNavbar2">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="https://mergify.io" target="_blank">Home</a>
+      </li>
+            <li class="nav-item">
+        <a class="nav-link" href="https://blog.mergify.io" target="_blank">Blog</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://dashboard.mergify.io" target="_blank">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/Mergifyio/mergify-engine/discussions" target="_blank">Discussions</a>
+      </li>
+    </ul>
+    <div class="dropdown-divider d-block d-sm-none mb-4"></div>
+    <form class="form-inline" action="search.html" method="get">
+      <input type="text" name="q" class="form-control mr-sm-2" placeholder="Search" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+  <nav class="related d-flex justify-content-between flex-wrap" role="navigation" aria-label="related navigation">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.html">Mergify  documentation</a></li>
+    <li class="breadcrumb-item active">&lt;no title&gt;</li>
+  </ol>
+  <div>
+    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+    </div>
+  </div>
+</nav>
+  <div class="main container-fluid">
+    <div class="row">
+      <div class="sphinxsidebar col-12 col-lg-4 col-xl-3" aria-label="main navigation"><ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">➡️ Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#understanding-mergify-check-report">Understanding Mergify Check Report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#controlling-mergify-with-commands">Controlling Mergify with Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">🔖 Configuration File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#file-used">File Used</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#format">Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#data-types">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#validation">Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conditions.html">🎯 Conditions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#grammar">Grammar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#attributes">Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#operators">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#how-to-match-lists">How To Match Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#implementing-or-conditions">Implementing Or Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#about-status-checks">About Status Checks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="actions.html">🚀 Actions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#assign">assign</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#backport">backport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#copy">copy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#comment">comment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#review">review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#close">close</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#delete-head-branch">delete_head_branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#dismiss-reviews">dismiss_reviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#label">label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#merge">merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#request-reviews">request_reviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#rebase">rebase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#update">update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#post-check">post_check</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">⚙️ Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#rebase">rebase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#update">update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#backport">backport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#refresh">refresh</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="merge-action.html">🔀 Delving into the Merge Action</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="merge-action.html#strict-merge">Strict Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merge-action.html#git-merge-workflow-and-mergify-equivalent-configuration">Git merge workflow and Mergify equivalent configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">🧪 Example Rules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#automatic-merge-when-ci-works-and-approving-reviews">✅ Automatic Merge when CI works and approving reviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#using-regular-expressions">🌀 Using Regular Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#merging-based-on-modified-files">🗂 Merging based on Modified Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#using-labels-to-backport-pull-requests">👩‍🔧 Using Labels to Backport Pull-Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#deleting-merged-branch">✂️ Deleting Merged Branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#less-strict-rules-for-stable-branches">🏖 Less Strict Rules for Stable Branches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#using-labels-to-enable-disable-merge">🎬 Using Labels to Enable/Disable Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#using-labels-to-prioritize-merge">⚡️ Using Labels to Prioritize Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#removing-stale-reviews">🥶 Removing Stale Reviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#require-all-requested-reviews-to-be-approved">🙅️ Require All Requested Reviews to Be Approved</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#welcoming-your-contributors">💌 Welcoming your Contributors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#request-for-action">🤜 Request for Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#flexible-reviewers-assignment">👀 Flexible Reviewers Assignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#running-ci-pipelines-automatically">💬 Running CI pipelines automatically</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#enforcing-pull-request-guidelines">📜 Enforcing Pull Request Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#bots">🤖 Bots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="badge.html">🎖 Badge</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="badge.html#embedding">Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="badge.html#styles">Styles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">💬 FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#mergify-is-unable-to-merge-my-pull-request-due-to-my-branch-protection-settings">Mergify is unable to merge my pull request due to my branch protection settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#why-did-mergify-seem-to-have-merged-my-pull-request-whereas-all-conditions-were-not-true">Why did Mergify seem to have merged my pull request whereas all conditions were not true?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#i-see-a-rebase-and-force-push-done-by-a-member-of-the-repository-but-mergify-actually-did-it">I see a rebase and force-push done by a member of the repository, but Mergify actually did it.</a></li>
+</ul>
+</li>
+</ul>
+
+
+      </div>
+      <div class="document col-12 col-lg-8 col-xl-9">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="clearer"></div>
+    </div>
+  </div>
+</div>
+<footer class="footer d-flex justify-content-between flex-wrap">
+    <div class="copyright">
+        <div>&copy; Copyright 2021, Mergify</div>
+    </div>
+    <div>
+      <a href="https://github.com/Mergifyio/mergify-engine/tree/master/docs/source/global-substitutions.rst"
+         class="btn btn-dark btn-sm active">
+        Edit on GitHub <i class="fas fa-external-link-square-alt"></i>
+      </a>
+    </div>
+    <div>
+        <a href="#" class="btn btn-primary btn-sm" role="button">Back to top</a>
+    </div>
+</footer>
+  </body>
+</html>

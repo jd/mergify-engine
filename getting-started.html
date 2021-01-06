@@ -1,154 +1,318 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Getting Started &#8212; Mergify.io  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="Introduction to Mergify Configuration and Deployment" name="description" />
+<meta content="mergify, automation, deployment, start" name="keywords" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>➡️ Getting Started &#8212; Mergify  documentation</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g==" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/mergify.css" type="text/css" />
+
+  
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js" integrity="sha512-8qmis31OQi6hIRgvkht0s6mCOittjMa9GMqtK9hes5iEQBQE/Ca6yGE5FsW36vyipGoWQswBj/QBm2JR086Rkw==" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="_static/mergify.js"></script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-118666091-1', 'auto');
+    ga('send', 'pageview');
+  </script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="FAQ" href="faq.html" />
-    <link rel="prev" title="Mergify.io’s documentation" href="index.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
+    <link rel="next" title="🔖 Configuration File" href="configuration.html" />
+    <link rel="prev" title="Mergify Documentation" href="index.html" /> 
   </head><body>
-  <div class="document">
-    
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<p class="logo">
-  <a href="index.html">
-    <img class="logo" src="_static/logo.png" alt="Logo"/>
-    
-    <h1 class="logo logo-name">Mergify.io</h1>
-    
+<div class="body-container">
+  <nav class="navbar navbar-expand-md sticky-top navbar-light bg-white flex-wrap">
+  <a class="navbar-brand" href="index.html">
+    <img class="logo" src="_static/mergify-logo-horizontal.png" alt="Mergify"/>
   </a>
-</p>
-
-
-
-<p class="blurb">Stop merging your pull requests manually.</p>
-
-
-
-
-
-
-<h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mergify-io-is-now-ready-what-will-happen-next">Mergify.io is now ready, what will happen next?</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
-</ul>
-
-
-<hr />
-<ul>
-    
-    <li class="toctree-l1"><a href="https://mergify.io">Website</a></li>
-    
-    <li class="toctree-l1"><a href="mailto:support@mergify.io">Support</a></li>
-    
-</ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Mergify.io’s documentation</a></li>
-      <li>Next: <a href="faq.html" title="next chapter">FAQ</a></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse" id="exCollapsingNavbar2">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="https://mergify.io" target="_blank">Home</a>
+      </li>
+            <li class="nav-item">
+        <a class="nav-link" href="https://blog.mergify.io" target="_blank">Blog</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://dashboard.mergify.io" target="_blank">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/Mergifyio/mergify-engine/discussions" target="_blank">Discussions</a>
+      </li>
+    </ul>
+    <div class="dropdown-divider d-block d-sm-none mb-4"></div>
+    <form class="form-inline" action="search.html" method="get">
+      <input type="text" name="q" class="form-control mr-sm-2" placeholder="Search" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
+  </div>
+</nav>
+  <nav class="related d-flex justify-content-between flex-wrap" role="navigation" aria-label="related navigation">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.html">Mergify  documentation</a></li>
+    <li class="breadcrumb-item active">➡️ Getting Started</li>
+  </ol>
+  <div>
+    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+      <a href="index.html" title="Previous Chapter: Mergify Documentation" class="btn btn-primary" role="button" accesskey="P">
+        &laquo; Mergify Documentation
+      </a>
+      <a href="configuration.html" title="Next Chapter: 🔖 Configuration File" class="btn btn-primary" role="button" accesskey="N">
+        🔖 Configuration File &raquo;
+      </a>
     </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
+  </div>
+</nav>
+  <div class="main container-fluid">
+    <div class="row">
+      <div class="sphinxsidebar col-12 col-lg-4 col-xl-3" aria-label="main navigation"><ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">➡️ Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#understanding-mergify-check-report">Understanding Mergify Check Report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#controlling-mergify-with-commands">Controlling Mergify with Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">🔖 Configuration File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#file-used">File Used</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#format">Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#data-types">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#validation">Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conditions.html">🎯 Conditions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#grammar">Grammar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#attributes">Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#operators">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#how-to-match-lists">How To Match Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#implementing-or-conditions">Implementing Or Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditions.html#about-status-checks">About Status Checks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="actions.html">🚀 Actions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#assign">assign</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#backport">backport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#copy">copy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#comment">comment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#review">review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#close">close</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#delete-head-branch">delete_head_branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#dismiss-reviews">dismiss_reviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#label">label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#merge">merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#request-reviews">request_reviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#rebase">rebase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#update">update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#post-check">post_check</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">⚙️ Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#rebase">rebase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#update">update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#backport">backport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#refresh">refresh</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="merge-action.html">🔀 Delving into the Merge Action</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="merge-action.html#strict-merge">Strict Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merge-action.html#git-merge-workflow-and-mergify-equivalent-configuration">Git merge workflow and Mergify equivalent configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">🧪 Example Rules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#automatic-merge-when-ci-works-and-approving-reviews">✅ Automatic Merge when CI works and approving reviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#using-regular-expressions">🌀 Using Regular Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#merging-based-on-modified-files">🗂 Merging based on Modified Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#using-labels-to-backport-pull-requests">👩‍🔧 Using Labels to Backport Pull-Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#deleting-merged-branch">✂️ Deleting Merged Branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#less-strict-rules-for-stable-branches">🏖 Less Strict Rules for Stable Branches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#using-labels-to-enable-disable-merge">🎬 Using Labels to Enable/Disable Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#using-labels-to-prioritize-merge">⚡️ Using Labels to Prioritize Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#removing-stale-reviews">🥶 Removing Stale Reviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#require-all-requested-reviews-to-be-approved">🙅️ Require All Requested Reviews to Be Approved</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#welcoming-your-contributors">💌 Welcoming your Contributors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#request-for-action">🤜 Request for Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#flexible-reviewers-assignment">👀 Flexible Reviewers Assignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#running-ci-pipelines-automatically">💬 Running CI pipelines automatically</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#enforcing-pull-request-guidelines">📜 Enforcing Pull Request Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#bots">🤖 Bots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="badge.html">🎖 Badge</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="badge.html#embedding">Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="badge.html#styles">Styles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">💬 FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#mergify-is-unable-to-merge-my-pull-request-due-to-my-branch-protection-settings">Mergify is unable to merge my pull request due to my branch protection settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#why-did-mergify-seem-to-have-merged-my-pull-request-whereas-all-conditions-were-not-true">Why did Mergify seem to have merged my pull request whereas all conditions were not true?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#i-see-a-rebase-and-force-push-done-by-a-member-of-the-repository-but-mergify-actually-did-it">I see a rebase and force-push done by a member of the repository, but Mergify actually did it.</a></li>
+</ul>
+</li>
+</ul>
+
+
       </div>
+      <div class="document col-12 col-lg-8 col-xl-9">
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
             
   <div class="section" id="getting-started">
-<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<h1>➡️ Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline"> 🔗</a></h1>
 <div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>In order to work, Mergify needs access to your account and to be enabled. To do so, start by logging in using your GitHub account at <a class="reference external" href="https://mergify.io/dashboard">https://mergify.io/dashboard</a>.</p>
-<p>Once this is done, you need to enable the Mergify GitHub Application on the repositories you want. Go to <a class="reference external" href="https://github.com/apps/mergify/installations/new">https://github.com/apps/mergify/installations/new</a> and enroll repositories where you want Mergify to be enabled.</p>
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"> 🔗</a></h2>
+<p>Mergify is a GitHub Application that operates on your GitHub repositories to
+automate them. You need to install Mergify on your GitHub Account to have it
+working.</p>
+<ol class="arabic simple">
+<li><p>Login to <a href="https://dashboard.mergify.io/" target="_blank">https://dashboard.mergify.io/</a></p></li>
+</ol>
+<img alt="Mergify Dashboard" class="align-center" src="_images/dashboard-welcome.png" />
+<ol class="arabic simple" start="2">
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Enable</span> <span class="pre">Mergify</span> <span class="pre">on</span> <span class="pre">a</span> <span class="pre">new</span> <span class="pre">account</span></code> or go to <a href="https://github.com/marketplace/mergify" target="_blank">https://github.com/marketplace/mergify/</a></p></li>
+</ol>
+<img alt="GitHub Marketplace for Mergify" class="align-center" src="_images/github-marketplace.png" />
+<ol class="arabic simple" start="3">
+<li><p>Once on the GitHub Marketplace page, scroll down and pick the plan you need.</p></li>
+</ol>
+<img alt="GitHub Marketplace plan for Mergify" class="align-center" src="_images/marketplace-plan.png" />
+<ol class="arabic simple" start="4">
+<li><p>GitHub will now offer you to select the repositories you want to give
+Mergify access to. Select any repository you like, or all if you wish.</p></li>
+</ol>
+<img alt="GitHub select repositories for Mergify" class="align-center" src="_images/github-app-install-repos.png" />
+<ol class="arabic simple" start="5">
+<li><p>You will be redirected to the dashboard.</p></li>
+</ol>
+<img alt="Mergify dashboard once setup" class="align-center" src="_images/dashboard-setup.png" />
 </div>
 <div class="section" id="configuration">
-<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
-<p>In the root directory of each enabled repository, create a <cite>.mergify.yml</cite> file with the minimal content to apply the defaults policies:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> myrepository
-$ <span class="nb">echo</span> <span class="s2">&quot;policies:&quot;</span> &gt; .mergify.yml
-$ git add .mergify.yml
-$ git commit -m <span class="s2">&quot;Enable mergify.io&quot;</span>
-$ git push
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline"> 🔗</a></h2>
+<div class="section" id="the-configuration-file">
+<h3>The Configuration File<a class="headerlink" href="#the-configuration-file" title="Permalink to this headline"> 🔗</a></h3>
+<p>Mergify applies rules to your pull requests. To do that, you need to create a
+Mergify configuration in each repository where Mergify is used.</p>
+<p>The configuration file should be created in the root directory of the
+repository and named either <code class="docutils literal notranslate"><span class="pre">.mergify.yml</span></code> or <code class="docutils literal notranslate"><span class="pre">.mergify/config.yml</span></code> or <code class="docutils literal notranslate"><span class="pre">.github/mergify.yml</span></code>.</p>
+<p>As the file name implies, the configuration file format is based on <a class="reference external" href="https://yaml.org/">YAML</a>, a simplistic file format for data. The configuration
+file format is entirely documented in <a class="reference internal" href="configuration.html#configuration-file-format"><span class="std std-ref">🔖 Configuration File</span></a>.</p>
+</div>
+<div class="section" id="the-rules">
+<h3>The Rules<a class="headerlink" href="#the-rules" title="Permalink to this headline"> 🔗</a></h3>
+<p>The configuration file is composed of a main key named <code class="docutils literal notranslate"><span class="pre">pull_request_rules</span></code>
+which contains a list of rules.</p>
+<p>Each rule is composed of 3 elements:</p>
+<ul class="simple">
+<li><p>A <em>name</em> that describes what the rule does. It’s not interpreted by Mergify
+and can be anything you like that helps you identify the rule.</p></li>
+<li><p>A list of <em>conditions</em>. Each conditions must match for the rule to be
+applied.</p></li>
+<li><p>A list of <em>actions</em>. Each action will be applied as soon as the pull request
+matches the <em>conditions</em>.</p></li>
+</ul>
+</div>
+<div class="section" id="a-first-rule">
+<h3>A First Rule<a class="headerlink" href="#a-first-rule" title="Permalink to this headline"> 🔗</a></h3>
+<p>Let’s create a first rule that will merge the pull request as soon as it has
+been approved by one contributor.</p>
+<p>Here’s the relevant configuration file content:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">pull_request_rules</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Automatic merge ⬇️ on approval ✔</span>
+    <span class="nt">conditions</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;#approved-reviews-by&gt;=1&quot;</span>
+    <span class="nt">actions</span><span class="p">:</span>
+      <span class="nt">merge</span><span class="p">:</span>
+        <span class="nt">method</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">merge</span>
 </pre></div>
 </div>
-<p>A more realistic example of the <cite>.mergify.yml</cite> file would look like :</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">policies</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">required_status_checks</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">contexts</span><span class="p p-Indicator">:</span>
-        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">continuous-integration/travis-ci</span>
-    <span class="l l-Scalar l-Scalar-Plain">required_pull_request_reviews</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">required_approving_review_count</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
-</pre></div>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> of the rule is not used directly by Mergify, but is really
+useful when Mergify will report its status and for debugging rules. We advise
+setting an explicity name that makes sense to you.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">conditions</span></code> defines the list of conditions that a pull request must
+match in order for the engine to execute the configured actions. In this
+example, there is only one condition to be met for the rule to be applied to
+a pull request. The <code class="docutils literal notranslate"><span class="pre">approved-reviews-by</span></code> variable contains the list of
+collaborators that approved the pull request and. In this case, the variable
+must contains at least 1 member (note the length operator <code class="docutils literal notranslate"><span class="pre">#</span></code> used here).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">action</span></code> is to merge of the pull request. It enabled by specifying the
+<code class="docutils literal notranslate"><span class="pre">merge</span></code> action with a <code class="docutils literal notranslate"><span class="pre">method</span></code> parameter containing the merge method to
+use.</p></li>
+</ul>
+<p>Fore more details about the configuration file format, check
+<a class="reference internal" href="configuration.html#configuration-file-format"><span class="std std-ref">🔖 Configuration File</span></a>.</p>
 </div>
-<p>The key <cite>default</cite> stores the default merging rules to use on all branches. The <cite>required_status_checks</cite> lists all checks that must pass before merging a pull request.
-The <cite>required_pull_request_reviews</cite> defines how many reviewer of the repository should approve the pull request before it gets merged.</p>
-<p>You can define a per branch policy using the <cite>branches</cite> settings. To match multiple branches at once, you can use a regular expression:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">policies</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">required_status_checks</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">contexts</span><span class="p p-Indicator">:</span>
-        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">continuous-integration/travis-ci</span>
-    <span class="l l-Scalar l-Scalar-Plain">required_pull_request_reviews</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">required_approving_review_count</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
-  <span class="l l-Scalar l-Scalar-Plain">branches</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">stable/.*</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">required_pull_request_reviews</span><span class="p p-Indicator">:</span>
-        <span class="l l-Scalar l-Scalar-Plain">required_approving_review_count</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-</pre></div>
+<div class="section" id="creating-the-configuration-file">
+<h3>Creating the Configuration File<a class="headerlink" href="#creating-the-configuration-file" title="Permalink to this headline"> 🔗</a></h3>
+<p>You can create your configuration file using your favorite text editor.
+However, writing and testing in the config editor can be easier. Go to <a class="reference external" href="https://dashboard.mergify.io">your
+Mergify dashboard</a> and pick the config editor for
+your organization. Then, select a repository where you enabled Mergify.</p>
+<img alt="Mergify config editor" class="align-center" src="_images/config-editor.png" />
+<p>You can edit the default configuration provided as you wish. If your
+repository has existing pull requests, you can test your configuration against
+those by typing a pull request number in the form above.</p>
+<p>When done, click on the <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">a</span> <span class="pre">pull</span> <span class="pre">request</span> <span class="pre">with</span> <span class="pre">this</span> <span class="pre">configuration</span></code>
+button. A new pull request will be created on your repository with the new
+Mergify configuration. You can merge them by clicking on the merge button.</p>
+<img alt="Mergify config editor PR" class="align-center" src="_images/config-editor-pr.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For security reason, Mergify will never automatically merge a pull request
+if it changes the Mergify configuration file.</p>
 </div>
-<p>Mergify supports every available GitHub branch protection feature. You can read more detail on each feature in [GitHub branch API documentation](<a class="reference external" href="https://developer.github.com/v3/repos/branches/#update-branch-protection">https://developer.github.com/v3/repos/branches/#update-branch-protection</a>).</p>
+<p>Once your configuration is merged, Mergify will apply it to all your pull
+requests.</p>
 </div>
-<div class="section" id="mergify-io-is-now-ready-what-will-happen-next">
-<h2>Mergify.io is now ready, what will happen next?<a class="headerlink" href="#mergify-io-is-now-ready-what-will-happen-next" title="Permalink to this headline">¶</a></h2>
-<p>When a contributor sends a pull request to the repository, Mergify will post a status check about the state
-of the pull request according to the defined rules.</p>
-<img alt="status check" src="_images/mergify-status-ko.png" />
-<p>When all criterias of the policies are satisfied, Mergify will merge the base branch into the pull request if the pull request is not up-to-date with the base branch. This is made to ensure that the pull request is tested one last time while being up-to-date with the base branch.</p>
-<p>Once the required services status are approved, Mergify will automatically merge the pull request.</p>
-<img alt="merge" src="_images/mergify-merge.png" />
-<p>You can follow the state of the Mergify merge queue at <a class="reference external" href="https://mergify.io/dashboard">https://mergify.io/dashboard</a></p>
-<p>Now, that Mergify.io is setup, you can go back on what matters for your project and let us babysit your pull requests!</p>
+</div>
+<div class="section" id="understanding-mergify-check-report">
+<h2>Understanding Mergify Check Report<a class="headerlink" href="#understanding-mergify-check-report" title="Permalink to this headline"> 🔗</a></h2>
+<p>When a pull request is created in the repository, Mergify posts a status check
+about the state of the pull request according to the defined rules.</p>
+<img alt="status check" class="align-center" src="_images/mergify-checks-status.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When a pull request changes the configuration of Mergify, the status is
+built with the current configuration (without the pull request change). The
+Mergify configuration is validated and status is posted in the <code class="docutils literal notranslate"><span class="pre">Summary</span></code>
+check.</p>
+</div>
+<p>When all the criterias of the rules are satisfied, Mergify executes the
+configured actions and e.g. merges the pull request.</p>
+</div>
+<div class="section" id="controlling-mergify-with-commands">
+<h2>Controlling Mergify with Commands<a class="headerlink" href="#controlling-mergify-with-commands" title="Permalink to this headline"> 🔗</a></h2>
+<p>Mergify also exposes a set of <a class="reference internal" href="commands.html#commands"><span class="std std-ref">⚙️ Commands</span></a> that you can trigger by commenting on
+the pull request.</p>
+<img alt="status check" class="align-center" src="_images/mergify-command.png" />
+<p>You can consult the list of those commands on the <a class="reference internal" href="commands.html#commands"><span class="std std-ref">⚙️ Commands</span></a> page.</p>
 </div>
 </div>
 
@@ -156,15 +320,24 @@ of the pull request according to the defined rules.</p>
           </div>
         </div>
       </div>
-    <div class="clearer"></div>
-  </div>
-    <div class="footer">
-      &copy;2018, Mergify.io.
-      
     </div>
-
-    
-
-    
+      <div class="clearer"></div>
+    </div>
+  </div>
+</div>
+<footer class="footer d-flex justify-content-between flex-wrap">
+    <div class="copyright">
+        <div>&copy; Copyright 2021, Mergify</div>
+    </div>
+    <div>
+      <a href="https://github.com/Mergifyio/mergify-engine/tree/master/docs/source/getting-started.rst"
+         class="btn btn-dark btn-sm active">
+        Edit on GitHub <i class="fas fa-external-link-square-alt"></i>
+      </a>
+    </div>
+    <div>
+        <a href="#" class="btn btn-primary btn-sm" role="button">Back to top</a>
+    </div>
+</footer>
   </body>
 </html>
