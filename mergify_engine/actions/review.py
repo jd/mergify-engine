@@ -47,7 +47,9 @@ class ReviewAction(actions.Action):
 
     silent_report = True
 
-    def run(self, ctxt: context.Context, rule: rules.EvaluatedRule) -> check_api.Result:
+    async def run(
+        self, ctxt: context.Context, rule: rules.EvaluatedRule
+    ) -> check_api.Result:
         payload = {"event": self.config["type"]}
 
         if self.config["bot_account"] and not ctxt.subscription.has_feature(

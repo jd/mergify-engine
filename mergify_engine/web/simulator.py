@@ -83,7 +83,7 @@ async def voluptuous_errors(
     return responses.JSONResponse(status_code=400, content=payload)
 
 
-def _sync_simulator(pull_request_rules, owner, repo, pull_number, token):
+async def _simulator(pull_request_rules, owner, repo, pull_number, token):
     try:
         if token:
             auth = github.GithubTokenAuth(owner, token)
@@ -98,9 +98,7 @@ def _sync_simulator(pull_request_rules, owner, repo, pull_number, token):
                     message=f"Pull request {owner}/{repo}/pulls/{pull_number} not found"
                 )
 
-            sub = asyncio.run(
-                subscription.Subscription.get_subscription(client.auth.owner_id)
-            )
+            sub = await subscription.Subscription.get_subscription(client.auth.owner_id)
 
             ctxt = context.Context(
                 client,
@@ -108,7 +106,7 @@ def _sync_simulator(pull_request_rules, owner, repo, pull_number, token):
                 sub,
                 [{"event_type": "mergify-simulator", "data": []}],
             )
-            match = pull_request_rules.get_pull_request_rule(ctxt)
+            match = await pull_request_rules.get_pull_request_rule(ctxt)
             return actions_runner.gen_summary(ctxt, match)
     except exceptions.MergifyNotInstalled:
         raise PullRequestUrlInvalid(
@@ -124,15 +122,10 @@ async def simulator(request: requests.Request) -> responses.JSONResponse:
 
     data = SimulatorSchema(await request.json())
     if data["pull_request"]:
-        loop = asyncio.get_running_loop()
-        title, summary = await loop.run_in_executor(
-            None,
-            functools.partial(
-                _sync_simulator,
+        title, summary = await _simulator(
                 data["mergify.yml"]["pull_request_rules"],
                 *data["pull_request"],
                 token=token,
-            ),
         )
     else:
         title, summary = ("The configuration is valid", None)

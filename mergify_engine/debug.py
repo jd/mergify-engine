@@ -278,7 +278,9 @@ def report(
 
             if mergify_config is not None:
                 print("* MERGIFY LIVE MATCHES:")
-                match = mergify_config["pull_request_rules"].get_pull_request_rule(ctxt)
+                match = asyncio.run(
+                    mergify_config["pull_request_rules"].get_pull_request_rule(ctxt)
+                )
                 summary_title, summary = actions_runner.gen_summary(ctxt, match)
                 print("> %s" % summary_title)
                 print(summary)

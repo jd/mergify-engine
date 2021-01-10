@@ -36,7 +36,9 @@ class AssignAction(actions.Action):
 
     silent_report = True
 
-    def run(self, ctxt: context.Context, rule: rules.EvaluatedRule) -> check_api.Result:
+    async def run(
+        self, ctxt: context.Context, rule: rules.EvaluatedRule
+    ) -> check_api.Result:
         # NOTE: "users" is deprecated, but kept as legacy code for old config
         if self.config["users"]:
             self._add_assignees(ctxt, self.config["users"])

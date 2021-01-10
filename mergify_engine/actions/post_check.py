@@ -49,7 +49,7 @@ class PostCheckAction(actions.Action):
     always_run = True
     allow_retrigger_mergify = True
 
-    def _post(
+    async def _post(
         self, ctxt: context.Context, rule: rules.EvaluatedRule
     ) -> check_api.Result:
         # TODO(sileht): Don't run it if conditions contains the rule itself, as it can

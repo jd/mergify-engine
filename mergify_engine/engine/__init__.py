@@ -238,7 +238,7 @@ def run(
                 break
 
     ctxt.log.debug("engine handle actions")
-    actions_runner.handle(mergify_config["pull_request_rules"], ctxt)
+    asyncio.run(actions_runner.handle(mergify_config["pull_request_rules"], ctxt))
 
 
 async def create_initial_summary(event: github_types.GitHubEventPullRequest) -> None:

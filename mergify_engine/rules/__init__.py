@@ -139,7 +139,15 @@ class RulesEvaluator:
         init=False, default_factory=list
     )
 
-    def __post_init__(self):
+    @classmethod
+    async def create(
+        cls,
+        rules: typing.List[Rule],
+        context: context.Context,
+        rule_class: object,
+        hide_rule: bool,
+    ) -> "RulesEvaluator":
+        self = cls(rules, context, rule_class, hide_rule)
         for rule in self.rules:
             ignore_rules = False
             next_conditions_to_validate = []
@@ -147,7 +155,7 @@ class RulesEvaluator:
                 for attrib in self.TEAM_ATTRIBUTES:
                     condition.value_expanders[attrib] = self.context.resolve_teams
 
-                if not condition(self.context.pull_request):
+                if not await condition(self.context.pull_request):
                     next_conditions_to_validate.append(condition)
                     if condition.attribute_name in self.BASE_ATTRIBUTES:
                         ignore_rules = True
@@ -160,6 +168,7 @@ class RulesEvaluator:
                 self.matching_rules.append(
                     self.rule_class.from_rule(rule, next_conditions_to_validate)
                 )
+        return self
 
 
 @dataclasses.dataclass
@@ -180,8 +189,10 @@ class PullRequestRules:
     def __iter__(self):
         return iter(self.rules)
 
-    def get_pull_request_rule(self, pull_request: context.Context) -> RulesEvaluator:
-        return RulesEvaluator(self.rules, pull_request, EvaluatedRule, True)
+    async def get_pull_request_rule(
+        self, pull_request: context.Context
+    ) -> RulesEvaluator:
+        return await RulesEvaluator.create(self.rules, pull_request, EvaluatedRule, True)
 
 
 class YAMLInvalid(voluptuous.Invalid):  # type: ignore[misc]

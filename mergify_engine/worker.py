@@ -583,6 +583,7 @@ end
             except vcr_errors_CannotOverwriteExistingCassetteException:
                 raise
             except Exception:
+                raise
                 # Ignore it, it will retried later
                 logger.error("failed to process pull request", exc_info=True)
 

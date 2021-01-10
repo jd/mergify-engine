@@ -117,7 +117,9 @@ class RequestReviewsAction(actions.Action):
 
         return user_reviews_to_request, team_reviews_to_request
 
-    def run(self, ctxt: context.Context, rule: rules.EvaluatedRule) -> check_api.Result:
+    async def run(
+        self, ctxt: context.Context, rule: rules.EvaluatedRule
+    ) -> check_api.Result:
         if "random_count" in self.config and not ctxt.subscription.has_feature(
             subscription.Features.RANDOM_REQUEST_REVIEWS
         ):

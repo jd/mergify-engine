@@ -117,11 +117,13 @@ def run_action(
 
     statsd.increment("engine.commands.count", tags=["name:%s" % command])
 
-    report = method.run(
-        ctxt,
-        rules.EvaluatedRule(
-            "", rules.RuleConditions([]), rules.RuleMissingConditions([]), {}
-        ),
+    report = asyncio.run(
+        method.run(
+            ctxt,
+            rules.EvaluatedRule(
+                "", rules.RuleConditions([]), rules.RuleMissingConditions([]), {}
+            ),
+        )
     )
 
     if command_args:

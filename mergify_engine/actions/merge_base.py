@@ -153,7 +153,7 @@ class MergeBaseAction(actions.Action):
 
         return check_api.Result(check_api.Conclusion.PENDING, title, summary)
 
-    def run(
+    async def run(
         self, ctxt: context.Context, rule: "rules.EvaluatedRule"
     ) -> check_api.Result:
         if not config.GITHUB_APP:
@@ -210,7 +210,7 @@ class MergeBaseAction(actions.Action):
 
         report = self.merge_report(ctxt)
         if report is not None:
-            q.remove_pull(ctxt)
+            await q.remove_pull(ctxt)
             return report
 
         if self.config["strict"] in (
@@ -218,9 +218,9 @@ class MergeBaseAction(actions.Action):
             StrictMergeParameter.ordered,
         ):
             if self._should_be_queued(ctxt, q):
-                q.add_pull(ctxt, typing.cast(queue.QueueConfig, self.config))
+                await q.add_pull(ctxt, typing.cast(queue.QueueConfig, self.config))
             else:
-                q.remove_pull(ctxt)
+                await q.remove_pull(ctxt)
                 return check_api.Result(
                     check_api.Conclusion.CANCELLED,
                     "The pull request have been removed from the queue",
@@ -229,19 +229,19 @@ class MergeBaseAction(actions.Action):
 
         try:
             if self._should_be_merged(ctxt, q):
-                result = self._merge(ctxt, rule, q)
+                result = await self._merge(ctxt, rule, q)
             elif self._should_be_synced(ctxt, q):
-                result = self._sync_with_base_branch(ctxt, rule, q)
+                result = await self._sync_with_base_branch(ctxt, rule, q)
             else:
                 result = self.get_strict_status(ctxt, rule, q, is_behind=ctxt.is_behind)
         except Exception:
-            q.remove_pull(ctxt)
+            await q.remove_pull(ctxt)
             raise
         if result.conclusion is not check_api.Conclusion.PENDING:
-            q.remove_pull(ctxt)
+            await q.remove_pull(ctxt)
         return result
 
-    def cancel(
+    async def cancel(
         self, ctxt: context.Context, rule: "rules.EvaluatedRule"
     ) -> check_api.Result:
         self._set_effective_priority(ctxt)
@@ -249,7 +249,7 @@ class MergeBaseAction(actions.Action):
         q = queue.Queue.from_context(ctxt)
         output = self.merge_report(ctxt)
         if output:
-            q.remove_pull(ctxt)
+            await q.remove_pull(ctxt)
             if ctxt.pull["state"] == "closed":
                 return output
             else:
@@ -269,19 +269,19 @@ class MergeBaseAction(actions.Action):
                     )
                 elif self._should_be_synced(ctxt, q):
                     # Something got merged in the base branch in the meantime: rebase it again
-                    result = self._sync_with_base_branch(ctxt, rule, q)
+                    result = await self._sync_with_base_branch(ctxt, rule, q)
                 else:
                     result = self.get_strict_status(
                         ctxt, rule, q, is_behind=ctxt.is_behind
                     )
             except Exception:
-                q.remove_pull(ctxt)
+                await q.remove_pull(ctxt)
                 raise
             if result.conclusion is not check_api.Conclusion.PENDING:
-                q.remove_pull(ctxt)
+                await q.remove_pull(ctxt)
             return result
 
-        q.remove_pull(ctxt)
+        await q.remove_pull(ctxt)
 
         return self.cancelled_check_report
 
@@ -291,7 +291,7 @@ class MergeBaseAction(actions.Action):
         else:
             self.config["effective_priority"] = PriorityAliases.medium.value
 
-    def _sync_with_base_branch(
+    async def _sync_with_base_branch(
         self, ctxt: context.Context, rule: "rules.EvaluatedRule", q: queue.Queue
     ) -> check_api.Result:
         method = self.config["strict_method"]
@@ -313,8 +313,8 @@ class MergeBaseAction(actions.Action):
             if output:
                 return output
             else:
-                q.remove_pull(ctxt)
-                q.add_pull(ctxt, typing.cast(queue.QueueConfig, self.config))
+                await q.remove_pull(ctxt)
+                await q.add_pull(ctxt, typing.cast(queue.QueueConfig, self.config))
                 return check_api.Result(
                     check_api.Conclusion.FAILURE,
                     "Base branch update has failed",
@@ -324,18 +324,20 @@ class MergeBaseAction(actions.Action):
             return self.get_strict_status(ctxt, rule, q, is_behind=False)
 
     @staticmethod
-    def _get_commit_message(pull_request, mode="default"):
+    async def _get_commit_message(pull_request, mode="default"):
+        body = await pull_request.body
+
         if mode == "title+body":
             # Include PR number to mimic default GitHub format
-            return f"{pull_request.title} (#{pull_request.number})", pull_request.body
+            return f"{pull_request.title} (#{pull_request.number})", body
 
-        if not pull_request.body:
+        if not body:
             return
 
         found = False
         message_lines = []
 
-        for line in pull_request.body.split("\n"):
+        for line in body.split("\n"):
             if MARKDOWN_COMMIT_MESSAGE_RE.match(line):
                 found = True
             elif found and MARKDOWN_TITLE_RE.match(line):
@@ -363,7 +365,7 @@ class MergeBaseAction(actions.Action):
                 ),
             )
 
-    def _merge(
+    async def _merge(
         self,
         ctxt: context.Context,
         rule: "rules.EvaluatedRule",
@@ -383,7 +385,7 @@ class MergeBaseAction(actions.Action):
         data = {}
 
         try:
-            commit_title_and_message = self._get_commit_message(
+            commit_title_and_message = await self._get_commit_message(
                 ctxt.pull_request,
                 self.config["commit_message"],
             )
@@ -427,7 +429,7 @@ class MergeBaseAction(actions.Action):
             if ctxt.pull["merged"]:
                 ctxt.log.info("merged in the meantime")
             else:
-                return self._handle_merge_error(e, ctxt, rule, q)
+                return await self._handle_merge_error(e, ctxt, rule, q)
         else:
             ctxt.update()
             ctxt.log.info("merged")
@@ -442,7 +444,7 @@ class MergeBaseAction(actions.Action):
                 "The pull request have been merged, but GitHub API still report it open",
             )
 
-    def _handle_merge_error(
+    async def _handle_merge_error(
         self,
         e: http.HTTPClientSideError,
         ctxt: context.Context,
@@ -472,7 +474,7 @@ class MergeBaseAction(actions.Action):
             # FIXME(sileht): Not sure this code handles all cases, maybe we should just
             # send a refresh to this PR to retry later
             if self._should_be_synced(ctxt, q):
-                return self._sync_with_base_branch(ctxt, rule, q)
+                return await self._sync_with_base_branch(ctxt, rule, q)
             else:
                 return self.get_strict_status(ctxt, rule, q, is_behind=ctxt.is_behind)
 
